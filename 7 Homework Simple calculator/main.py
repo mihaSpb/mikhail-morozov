@@ -45,7 +45,7 @@ try:
     num2 = float ( input("Введите второе число: "))
     result = num1 / num2
 except ValueError:
-    print("Ошибка! Пожалуйста, введите числовое занчение!")9
+    print("Ошибка! Пожалуйста, введите числовое занчение!")
 except ZeroDivisionError:
     print("Ошибка! Деление на ноль!")
 else:
