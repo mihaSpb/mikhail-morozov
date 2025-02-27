@@ -1,30 +1,23 @@
 def max_number(a, b):
-    result = (a + b + abs(a - b)) / 2
-    assert result >= a and result >= b
-    return result
+    return a if a > b else b
 
 
 def empty_function():
     pass
 
 
-def even_numbers(n, current = 0):
-    try:
-        assert current <= n
-        yield current
-        yield from even_numbers(n, current + 2)
-    except AssertionError:
-        return
+def even_numbers(n):
+  for number in range(0, n + 1, 2):
+      yield number
+
+def check_max_number():
+    assert max_number(10, 5) == 10, "Ошибка: max_number(10, 5) должно возвращать 10"
+    assert max_number(-1, -5) == -1, "Ошибка: max_number(-1, -5) должно возвращать -1"
+    assert max_number(3.5, 7.2) == 7.2, "Ошибка: max_number(3.5, 7.2) должно возвращать 7.2"
+    assert max_number(0, 0) == 0, "Ошибка: max_number(0, 0) должно возвращать 0"
+    print("\nВсе автотесты для max_number пройдены успешно.")
 
 
-assert max_number(10, 5) == 10, "Ошибка: max_number(10, 5) должно возвращать 10"
-assert max_number(-1, -5) == -1, "Ошибка: max_number(-1, -5) должно возвращать -1"
-assert max_number(2.5, 8.8) == 8.8, "Ошибка: max_number(2.5, 8.8) должно возвращать 8.8"
-assert max_number(100, 200) == 200, "Ошибка: max_number(100, 200) должно возвращать 200"
-assert max_number(0, 0) == 0, "Ошибка: max_number(0, 0) должно возвращать 0"
-
-print("\nВсе автотесты для max_number пройдены успешно.\n")
-
-print(list(even_numbers(18)))
-
+print("Чётные числа: ", list(even_numbers(18)))
 empty_function()
+check_max_number()
