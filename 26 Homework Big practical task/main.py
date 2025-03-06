@@ -62,4 +62,5 @@ def main():
     print(f"Общий средний балл по всем студентам: {avgerage_all:.2f}")
 
 
+
 main()
