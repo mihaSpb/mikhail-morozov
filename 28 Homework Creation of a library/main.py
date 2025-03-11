@@ -1,15 +1,20 @@
-# Изменения для отображения статуса книги: True == "в наличии", False == "выдана", None == "статус не определён"
+# Определение статуса книги: True == "в наличии", False == "выдана", None == "статус не определён"
+def check_status(status):
+    if status is True:
+        return "в наличии"
+    elif status is False:
+        return "выдана"
+    else:
+        return "статус не определён"
+
+
 def book_list_view(library):
     if library:
         print("Список книг в библиотеке:")
         for title, info in library.items():
             status = info.get("наличие")
-            if status is True:
-                status_text = "в наличии"
-            elif status is False:
-                status_text = "выдана"
-            else:
-                status_text = "статус не определён"
+            # Используем функцию check_status для получения текстового описания статуса
+            status_text = check_status(status)
             print(f"{title} - {status_text}")
     else:
         print("В библиотеке нет книг.")
@@ -42,7 +47,8 @@ def remove_book(library, title):
 def issue_book(library, title):
     if title in library:
         library[title]["наличие"] = False
-        print(f"Книга '{title}' успешно выдана.\n")
+        status_text = check_status(library[title]["наличие"])
+        print(f"Книга '{title}' успешно выдана. Текущий статус: {status_text}\n")
     else:
         print(f"Книга '{title}' не найдена.\n")
 
@@ -54,6 +60,19 @@ def return_book(library, title):
         print(f"Книга '{title}' успешно возвращена.\n")
     else:
         print(f"Книга '{title}' не найдена.\n")
+
+
+# Поиск книги по названию и вывод информации о ней
+def find_book(library, title):
+    if title in library:
+        print(f"\nИнформация о книге '{title}':")
+        for key, value in library[title].items():
+            if key == "наличие":
+                print(f"статус: {check_status(value)}")
+            else:
+                print(f"{key}: {value}")
+    else:
+        print(f"\nКнига '{title}' не найдена.")
 
 
 def main ():
@@ -75,5 +94,8 @@ def main ():
     issue_book(library, "Песчаные короли")
     return_book(library, "Улисс")
     book_list_view(library)
+
+    find_book(library, "Танец с драконами")
+
 
 main()
