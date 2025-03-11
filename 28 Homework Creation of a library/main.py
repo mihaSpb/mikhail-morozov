@@ -22,6 +22,14 @@ def add_book(library, title, author, year):
         print(f"Книга '{title}' успешно добавлена.\n")
 
 
+def remove_book(library, title):
+    if title in library:
+        del library[title]
+        print(f"\nКнига '{title}' успешно удалена.\n")
+    else:
+        print(f"\nКнига '{title}' не найдена.\n")
+
+
 def main ():
     library = {
         "Война и мир": {"автор": "Лев Толстой", "год": 1869, "наличие": "в наличии"},
@@ -31,6 +39,9 @@ def main ():
 
     book_list_view(library)
     add_book(library, "Улисс", "Джеймс Джойс", 1921)
+    book_list_view(library)
+
+    remove_book(library, "Колыбель для кошки")
     book_list_view(library)
 
 
