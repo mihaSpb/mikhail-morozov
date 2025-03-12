@@ -1,5 +1,14 @@
 # Определение статуса книги: True == "в наличии", False == "выдана", None == "статус не определён"
 def check_status(status):
+    """
+        Возвращает строку, описывающую статус книги.
+
+        Аргументы:
+        status: булево значение или None, представляющее статус книги.
+                True  -> "в наличии"
+                False -> "выдана"
+                None  -> "статус не определён"
+        """
     if status is True:
         return "в наличии"
     elif status is False:
@@ -21,6 +30,16 @@ def book_list_view(library):
 
 
 def add_book(library, title, author, year):
+    """
+        Добавляет новую книгу в словарь library или обновляет информацию,
+        если книга с таким названием уже существует.
+
+        Аргументы:
+        library (dict): Словарь с данными о книгах.
+        title (str): Название книги.
+        author (str): Автор книги.
+        year (int): Год издания книги.
+        """
     new_book = {"автор": author, "год": year, "наличие": None}
 
     if title in library:
@@ -36,6 +55,11 @@ def add_book(library, title, author, year):
 
 
 def remove_book(library, title):
+    """
+        Удаляет книгу из библиотеки по её названию.
+        Если книга не найдена, выводит сообщение об этом.
+        После удаления выводит сообщение об успешном удалении.
+        """
     if title in library:
         del library[title]
         print(f"\nКнига '{title}' успешно удалена.\n")
